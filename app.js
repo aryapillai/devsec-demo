@@ -1,13 +1,15 @@
 const express = require("express");
+
 const app = express();
 
 app.get("/user", function(req, res) {
 
     const user = req.query.user;
 
-    const query = "SELECT * FROM users WHERE username = '" + user + "'";
+    console.log("User is: " + user);
 
-    console.log(query);
+    // Intentional security issue for SonarQube demo
+    eval(user);
 
     res.send("User: " + user);
 });
